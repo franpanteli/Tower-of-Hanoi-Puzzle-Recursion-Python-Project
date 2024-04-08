@@ -1,0 +1,102 @@
+SETTING UP THE PROBLEM: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-> About the project:
+	-> Recursion is a programming approach, which allows us to solve complicated computational problems with less code 
+	-> We are starting a loop-based approach, to solve the tower of Hanoi mathematical puzzle 
+	-> And then implementing a recursive solution 
+	-> So first a loop based solution, then a recursive solution 
+	-> Two approaches to the same problem <- the tower of Hanoi mathematical puzzle 
+
+-> The computer is like a huge calculator 
+-> We are using it to solve Physics problems 
+-> And doing that with code 
+
+-> Setting up a Python dictionary to initialise the Tower of Hanoi puzzle:
+	-> We have three rods and multiple disks of different diameters  
+	-> We want to move the disk from the first rod to the third rod
+	-> There are specific rules that must be followed when doing this 
+
+-> Encoding this puzzle:
+	-> We are setting up a dictionary, and each of the elements in this is a rod
+	-> There are key-value pairs in this 
+	-> Disks go on the rods -> with the largest disk at the bottom 
+	-> In the code, we represent the disks on the rod from top to bottom 
+		-> The smaller disk starts on the top of the rod, so these are the ones which we represent at the start of the lists in the dictionaries that represent them 
+	-> The disks start off piled on the first rod, with the smallest at the top and the largest at the bottom 
+	-> This is the dictionary we start this off with:
+
+rods = {
+    'A': range(3, 0, -1), <- Rod A has three disks, from large (3) at the bottom, to small (1) at the top  
+    'B': [],
+    'C': []
+}
+
+-> The range() function:
+	-> This is a datatype 
+	-> start:stop:step 
+	-> This returns an immutable sequence of numbers <- can't be changed (to do this we have to convert it into a list)
+
+-> Rules of the Tower of Hanoi puzzle:
+	-> We want to remove all of the disks to the last rod, following three rules 
+	-> These rules are:
+
+		1. You can move only top-most disks
+		2. You can move only one disk at a time
+		3. You cannot place larger disks on top of smaller ones
+
+	-> We define a `move` function, which can move the representations of the disks across the rods in the dictionary 
+	-> When you define functions, def move(): <- not def move:
+
+-> This puzzle can be solved in 2^n - 1 moves
+	-> n is the number of disks 
+	-> Then the total expression is the number of moves the puzzle can be solved in (it's increasing quickly with n)
+
+-> Names of the rods:
+	-> We are calling the first rod with all the disks on it the source 
+	-> Then the second rod which is used to store the rods on while the game is being played the auxiliary rod
+	-> Then the third rod the target rod 
+
+-> We are solving the problem with an iterative approach 
+-> And then a recursive one 
+-> So this is the iterative approach to the problem 
+
+SOLVING THE PROBLEM ITERATIVELY: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+-> We need to check that the moves made satisfy the conditions / rules for the game
+-> Coding those rules into a for loop and a series of if / elif statements 
+-> Storing the code that we use multiple times in variables 
+-> Adding certain variables in to check the direction the rods are being moved in <- boolean statements 
+	-> When coding the rules of the game into Python  
+-> It's the process of having the game and then creating a model of it 
+	-> And being able to encode the different rules of it into a series of if statements and elif blocks 
+	-> To optimise the code, taking sections of it which are repeated and putting them into their own function 
+	-> Refactoring is for example changing the name of one variable to something else throughout the code 
+-> When we test the code (the function we are writing), one of the things which we do is test it with different inputs to see how it responds 
+	-> We can give it extremely large ones
+	-> Or also extremely small ones
+-> When we are coding the rules into if statements, we are asking if the number of disks on a rod is odd or even 
+	-> We do this using the modulo statement 
+
+SOLVING THE PROBLEM RECURSIVELY: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+-> We are taking our previous solution and converting it into one which uses recursion 
+-> This breaks down the original problem into smaller ones
+-> We are defining the move function <- To move the disks across the different rods 
+	-> Setting n as one of the arguments to this 
+	-> We are adding a base case, so that the function isn't called indefinitely 
+	-> Each recursive call represents the movement of a disk across the rods 
+	-> For each stage while doing this, the call returns a dictionary showing the different disks on each of the rods 
+	-> While we are doing this, we still have the auxiliary, source and target rods 
+		-> Where the disks are and are being moved towards
+		-> And then the interim rod which the disk is placed on is the auxiliary rod, for a three rod game  
+		-> The role that the rods play in this context changes as the disks are moved across them  
+-> The target and auxiliary rods
+-> The code which uses the recursion method is more concise than the code which uses the iterative approach 
+	-> We don't need to differentiate between even and odd numbers of disks with the second approach, but we do with the first one
+-> We are also adding in code to stop the function execution in the second approach  
